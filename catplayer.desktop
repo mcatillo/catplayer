@@ -1,0 +1,11 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Exec=catplayer
+Icon=logo_dot.png
+Name=catplayer
+Type=Application
+Comment=Craft video player
+Categories=AudioVideo;Player;Recorder;
+Terminal=false
+StartupNotify=true
+Keywords=Player;Capture;DVD;Audio;Video;Server;Broadcast;
