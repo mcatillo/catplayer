@@ -77,7 +77,7 @@ and the application will start. Or for opening a given file you can run instead:
 where `<format>` can be `mp4, mov, mp3, wav, mkv, avi, ...` depending by the formats supported by your system.
 
 ## License
-The current software is currently distribuited under GPL version 3 license.
+The current software is currently distribuited under GPL license, version 3.
 
 ## Contact
 For information, problems or issues about this software that you want to report, you can contact me at the email address: <catillo.software@gmail.com>
