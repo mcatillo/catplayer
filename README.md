@@ -17,7 +17,7 @@ It is written in python with PySide6 and its developing has been a simple exerci
 
 Open PowerShell and run the commands:
 
-        git clone ...
+        git clone https://github.com/mcatillo/catplayer.git
         cd catplayer/
         python3.10 -m venv .menv
         .\.menv\Script\Activate.ps1
@@ -53,7 +53,7 @@ Now you can close PowerShell.
 For a global installation on you system,
 open your terminal and launch the commands:
 
-        git clone ...
+        git clone https://github.com/mcatillo/catplayer.git
         cd catplayer/
         sudo bash scripts/catplayerLinuxInstall.sh
 after that the application is available globally in your system.
