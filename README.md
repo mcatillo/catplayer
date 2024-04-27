@@ -80,5 +80,8 @@ where `<format>` can be `mp4, mov, mp3, wav, mkv, avi, ...` depending by the for
 The current software is currently distribuited under GPL license, version 3.
 
 ## Contact
-For information, problems or issues about this software that you want to report, you can contact me at the email address: <catillo.software@gmail.com>
+For information, problems or issues about this software that you want to report, you can contact me at the email address: <catillo.software@gmail.com>.
+
+## Final Notes
+This software has to be intended as still in the production process. It is not yet a finished product and further improvements will be added in the next versions.
 
