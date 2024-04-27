@@ -1,0 +1,122 @@
+{
+    "open_video":{
+        "it": "Apri Video",
+        "en": "Open Video",
+        "de": "Video öffnen"
+    },
+    "videos":{
+        "it": "Video",
+        "en": "Videos",
+        "de": "Videos"
+    },
+    "any_files":{
+        "it": "Qualsiasi file",
+        "en": "Any files",
+        "de": "Jede Datei"
+    },
+    "open": {
+        "it": "Apri...",
+        "en": "Open...",
+        "de": "Offen..."
+    },
+    "language": {
+        "it": "Lingua",
+        "en": "Language",
+        "de": "Sprache"
+    },
+    "about": {
+        "it": "Informazioni",
+        "en": "About",
+        "de": "Um"
+    },
+    "exit": {
+        "it": "Esci",
+        "en": "Exit",
+        "de": "Ausfahrt"
+    },
+    "play": {
+        "it": "Avvio/Pausa",
+        "en": "Play/Pause",
+        "de": "Play/Pause"
+    },
+    "play1": {
+        "it": "Avvio",
+        "en": "Play",
+        "de": "Play"
+    },
+    "pause": {
+        "it": "Pausa",
+        "en": "Pause",
+        "de": "Pause"
+    },
+    "stop": {
+        "it": "Stop",
+        "en": "Stop",
+        "de": "Stop"
+    },
+    "expand": {
+        "it": "Espandi",
+        "en": "Expand",
+        "de": "Expandieren"
+    },
+    "audio": {
+        "it": "Audio Acceso/Spento",
+        "en": "Audio On/Off",
+        "de": "Audio On/Off"
+    },
+    "audioacceso": {
+        "it": "Audio Acceso",
+        "en": "Audio On",
+        "de": "Audio On"
+    },
+    "audiospento": {
+        "it": "Audio Spento",
+        "en": "Audio Off",
+        "de": "Audio Off"
+    },
+    "reduce": {
+        "it": "Riduci",
+        "en": "Reduce",
+        "de": "Reduzieren"
+    },
+    "nofileselected": {
+        "it": "Nessun file selezionato",
+        "en": "No file selected",
+        "de": "Keine Datei ausgewählt"
+    },
+    "opennewvideo": {
+        "it": "Apri nuovo video",
+        "en": "Open new video",
+        "de": "Neues Video öffnen"
+    },
+    "selectlanguage": {
+        "it": "Seleziona lingua",
+        "en": "Select language",
+        "de": "Sprache auswählen"
+    },
+    "it": {
+        "it" : "Italiano",
+        "en" : "Italian",
+        "de": "Italienisch"
+    },
+    "en" : {
+        "it" : "Inglese",
+        "en" : "English",
+        "de" : "Englisch"
+    },
+    "de" : {
+        "it" : "Tedesco",
+        "en" : "German",
+        "de" : "Deutsch"
+    },
+    "canclingua":{
+        "it" : "Torna alla precedente impostazione",
+        "en" : "Back to previous settings",
+        "de" : "Zurück zu den vorherigen Einstellungen"
+    },
+    "okaylingua":{
+        "it" : "Conferma selezione",
+        "en" : "Confirm selection",
+        "de" : "Auswahl bestätigen"
+    }
+}
