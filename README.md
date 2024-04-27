@@ -3,6 +3,8 @@
 **catplayer** is a basic software for reproducing videos and music on Windows and Linux operating systems.
 It is written in python with PySide6 and its developing has been a simple exercise for practising on the use of PySide6.
 
+<logo/catplayer.screenshot.png>
+
 ## How to use it
 ### On Windows
 
