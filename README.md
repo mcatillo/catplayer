@@ -21,7 +21,7 @@ Open PowerShell and run the commands:
         cd catplayer/
         python3.10 -m venv .menv
         .\.menv\Script\Activate.ps1
-        pip freeze -r requirements_win.txt
+        pip install -r requirements_win.txt
 
 
 after that you can run the application, with the command:
