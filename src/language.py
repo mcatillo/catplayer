@@ -10,9 +10,10 @@ Copyright (C) 2024 Marco Catillo
 Distribuited under GPLv3 license
 https://www.gnu.org/licenses/gpl-3.0.html
 
-In this python file we have two classes:
-    Language -> for handling words to be translated with different languages
-    SelectLanguage -> window for selecting a given language
+Description:
+    In this python file we have two classes:
+        Language -> for handling words to be translated with different languages
+        SelectLanguage -> window for selecting a given language
 
 '''
 
