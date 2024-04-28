@@ -10,8 +10,8 @@ Copyright (C) 2024 Marco Catillo
 Distribuited under GPLv3 license
 https://www.gnu.org/licenses/gpl-3.0.html
 
-
-Creating the main window of the application
+Description:
+    Creating the main window of the application
 
 '''
 
