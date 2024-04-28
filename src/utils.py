@@ -38,18 +38,21 @@ def path(*arg):
     if sys.platform=="linux" or sys.platform=="linux2":
         lp = os.path.join(homepath,'.local','share','catplayer',*arg)
         gp = os.path.join('/','usr','share','catplayer',*arg)
-        if os.path.exists(lp):
-            print(f"Locale {lp}")
+
+        if os.path.exists(lp) and os.access(lp,os.R_OK | os.W_OK):
             return lp
-        elif os.path.exists(gp):
-            print(f"Globale {gp}")
+        elif os.path.exists(gp) and os.access(gp,os.R_OK | os.W_OK):
             return gp
         else:
             rp = lpath(*arg)
-            print(f"Relativo {rp}")
             return rp
+
     elif sys.platform=='win32':
-        return lpath(*arg)
+        gp = "C:\\Program Files (x86)\\mcatillo\\catplayer"
+        if os.path.exists(gp) and os.access(gp,os.R_OK | os.W_OK):
+            return lpath(gp,*arg)
+        else:
+            return lpath(*arg)
     else:
         return lpath(*arg)
 

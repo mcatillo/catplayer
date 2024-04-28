@@ -49,7 +49,7 @@ class MediaPlayer(QMediaPlayer):
 
     def source_changed(self,media):
         '''Notify the media change and print the media location'''
-        print(f"media has been changed in {media}")
+        print(f"Media has been changed in {media}")
 
     def MysetSource(self,x):
         '''Set the new file source to be played
@@ -369,6 +369,7 @@ class VideoPlayer(QWidget):
     def __media_status_changed(self,v):
         '''Function to stop media, when reached its end'''
         if v == QMediaPlayer.EndOfMedia:
+            self.mediaPlayer.setPosition(0)
             self.stop()
 def apn(pl):
     '''Volume conversion from linear to cubic scale'''
