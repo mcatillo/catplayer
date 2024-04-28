@@ -10,7 +10,8 @@ Copyright (C) 2024 Marco Catillo
 Distribuited under GPLv3 license
 https://www.gnu.org/licenses/gpl-3.0.html
 
-Functions for managing path across different operating systems
+Description:
+    Functions for managing path across different operating systems
 
 '''
 
