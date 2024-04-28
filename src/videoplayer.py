@@ -10,9 +10,10 @@ Copyright (C) 2024 Marco Catillo
 Distribuited under GPLv3 license
 https://www.gnu.org/licenses/gpl-3.0.html
 
-In this python file we define the classes for playing the video/music.
-    MediaPlayer -> class inherited by QMediaPlayer to be adapted for the functionalities of the app
-    VideoPlayer -> 
+Description:
+    In this python file we define the classes for playing the video/music.
+        MediaPlayer -> class inherited by QMediaPlayer to be adapted for the functionalities of the app
+        VideoPlayer -> class of the widget containing the video
 
 '''
 
