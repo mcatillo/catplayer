@@ -1,0 +1,9 @@
+.menv/
+catplayer-x86_64.AppImage/
+build/
+dist/
+catplayer
+catplayer.exe
+src/__pycache__/
+catplayerWinInstall.exe
+README_AppImage.md
