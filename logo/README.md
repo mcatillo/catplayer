@@ -1,3 +1,0 @@
-# logo
-
-Different logo images.

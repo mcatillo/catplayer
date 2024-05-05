@@ -25,17 +25,28 @@ then
     echo "*****************************************"
     echo ""
     mkdir $CATPLAYER_PATH
+    mkdir $CATPLAYER_PATH/config
+    chmod -R 777 $CATPLAYER_PATH
+    chmod -R 777 $CATPLAYER_PATH/config
+    echo ""
+    echo "*****************************************"
+    echo " Copying files..."
+    echo "*****************************************"
+    echo ""
     cp -r ./logo $CATPLAYER_PATH/
-    cp ./logo/logo_dot.png $CATPLAYER_ICON/
-    cp -r ./src $CATPLAYER_PATH/
+    cp ./logo/catplayer_128x128.png $CATPLAYER_ICON/
+    cp -r ./media $CATPLAYER_PATH/
+    cp config/latest_config.json $CATPLAYER_PATH/config/
+    cp config/vocabulary.json $CATPLAYER_PATH/config/
     cp catplayer.desktop $CATPLAYER_DESKTOP/
+    chmod -R 777 $CATPLAYER_PATH
 
     echo ""
     echo "*****************************************"
     echo " Generating the executable..."
     echo "*****************************************"
     echo ""
-    pyinstaller --noconsole --onefile --distpath="." --icon=logo/logo_dot.ico --name=catplayer cli.py
+    pyinstaller --noconsole --onefile --distpath="." --icon=logo/catplayer_128x128.ico --name=catplayer cli.py
     cp catplayer $CATPLAYER_EXE
     deactivate
 
@@ -52,6 +63,7 @@ then
     rm -r .menv
     rm -r build
     rm catplayer.spec
+    rm catplayer
 
     echo ""
     echo "*****************************************"

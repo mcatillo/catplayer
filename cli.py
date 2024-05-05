@@ -20,8 +20,15 @@ __maintainer__ = "Marco Catillo"
 __status__ = "Production"
 
 from src.main import main
+import argparse
 import sys
 
+
+parser = argparse.ArgumentParser(description='Basic video/music player app.',prog='catplayer')
+parser.add_argument('filename',default="",nargs='?',help='Video/Music input file')
+parser.add_argument('-i','--input',default=None,type=str,help='Video/Music input file')
+
 if __name__ == "__main__":
-    arg = sys.argv # file video/music to open
-    main(arg)
+    arg = parser.parse_args() # file video/music to open
+    inputfile = arg.filename if arg.filename else arg.input
+    main(inputfile)

@@ -34,7 +34,7 @@ and the application will start.
 After the previous installation steps, in order to create a `.exe` file do not close
 PowerShell, and just run on it the command:
 
-        pyinstaller --noconsole --onefile --distpath="." --name=catplayer --icon=logo/logo_dot.ico cli.py
+        pyinstaller --noconsole --onefile --distpath="." --name=catplayer --icon=logo/catplayer_128x128.ico cli.py
 It will generate the executable `catplayer.exe`, which you can click to start the application.
 Now you can close PowerShell.
 
@@ -70,10 +70,19 @@ open your terminal and launch the commands:
         pip install -r requirements_lin.txt
 after that you can run the application, with the command:
 
-    python cli.py
-and the application will start. Or for opening a given file you can run instead:
+        python cli.py
+and the application will start.
+For creating the executable you can run:
 
-    python cli.py <name video>.<format>
+        pyinstaller --noconsole --onefile --distpath="." --name=catplayer --icon=logo/catplayer_128x128.ico cli.py
+
+For opening a given file you can run instead:
+
+    python cli.py -i <name video>.<format>
+or
+
+    ./catplayer -i <name video>.<format>
+
 where `<format>` can be `mp4, mov, mp3, wav, mkv, avi, ...` depending by the formats supported by your system.
 
 ## License
@@ -84,4 +93,3 @@ For information, problems or issues about this software that you want to report,
 
 ## Final Notes
 This software has to be intended as still in the production process. It is not yet a finished product and further improvements will be added in the next versions.
-

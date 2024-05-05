@@ -1,10 +1,10 @@
 #!/usr/bin/env xdg-open
 [Desktop Entry]
 Exec=catplayer
-Icon=logo_dot.png
+Icon=catplayer_128x128.png
 Name=catplayer
 Type=Application
-Comment=Craft video player
+Comment=Basic video/music player app
 Categories=AudioVideo;Player;Recorder;
 Terminal=false
 StartupNotify=true

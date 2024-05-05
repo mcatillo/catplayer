@@ -10,10 +10,9 @@ Copyright (C) 2024 Marco Catillo
 Distribuited under GPLv3 license
 https://www.gnu.org/licenses/gpl-3.0.html
 
-Description:
-    In this python file we define the classes for playing the video/music.
-        MediaPlayer -> class inherited by QMediaPlayer to be adapted for the functionalities of the app
-        VideoPlayer -> class of the widget containing the video
+In this python file we define the classes for playing the video/music.
+    MediaPlayer -> class inherited by QMediaPlayer to be adapted for the functionalities of the app
+    VideoPlayer -> 
 
 '''
 
@@ -23,9 +22,8 @@ from PySide6.QtGui import *
 from PySide6.QtCore import *
 from PySide6.QtMultimedia import QMediaPlayer, QAudioOutput, QAudio
 from PySide6.QtMultimediaWidgets import QVideoWidget
-import os
 import sys
-from src.utils import path
+from src.utils import Rpath
 
 fmt = 'svg' if sys.platform=="linux" or sys.platform=="linux2" else "png"
 dim = 28
@@ -215,7 +213,7 @@ class VideoPlayer(QWidget):
         self.check_mediaPlayer=False
         if self.arg:
             try:
-                self.mediaPlayer.MysetSource(path(self.arg))
+                self.mediaPlayer.MysetSource(self.arg)
             except:
                 pass
 
@@ -247,10 +245,23 @@ class VideoPlayer(QWidget):
         self.lcontrol.addWidget(self.exit_button)
         self.lcontrol.addWidget(self.screen_regulator)
 
+        # no border in buttons
+        #self.player.setStyleSheet("border:none")
+
         # Structure of layout
         self.lvideo.addWidget(self.videoWidget)
-        #self.lvideo.addLayout(self.lbar)
-        self.lvideo.addLayout(self.lcontrol)
+
+        # Put the bottom controller buttons in a widget
+        self.wcontrol = QWidget()
+        self.wcontrol.setLayout(self.lcontrol)
+        self.wcontrol.setFixedHeight(dim+18) # this has been done manually for fast fixing, but it should be adjusted for general value of dim
+
+        self.lvideo.addWidget(self.wcontrol)
+        # Set margins of video to zero
+        self.lvideo.setSpacing(0)
+        self.lvideo.setContentsMargins(0,0,0,0)
+
+        # Set the principal layout of the widget
         self.setLayout(self.lvideo)
 
     def __default_button_style(self):
@@ -275,21 +286,21 @@ class VideoPlayer(QWidget):
         # self.screen_regulator button
         self.screen_regulator.setFixedHeight(dim)
         self.screen_regulator.setFixedWidth(dim)
-        self.screen_regulator.setIcon(QtGui.QIcon(path('src','media',f'full_screen.{fmt}')))
+        self.screen_regulator.setIcon(QtGui.QIcon(Rpath('media',f'full_screen.{fmt}')))
         self.screen_regulator.setCursor(QCursor(Qt.PointingHandCursor))
         self.screen_regulator.setToolTip(self.lang.fromKey("expand"))
 
         # self.exit_button button
         self.exit_button.setFixedHeight(dim)
         self.exit_button.setFixedWidth(dim)
-        self.exit_button.setIcon(QtGui.QIcon(path('src','media',f'exit.{fmt}')))
+        self.exit_button.setIcon(QtGui.QIcon(Rpath('media',f'exit.{fmt}')))
         self.exit_button.setCursor(QCursor(Qt.PointingHandCursor))
         self.exit_button.setToolTip(self.lang.fromKey("exit"))
 
         # self.audioplay button for audio on/off
         self.audioplay.setFixedHeight(dim)
         self.audioplay.setFixedWidth(dim)
-        self.audioplay.setIcon(QtGui.QIcon(path('src','media',f'audio_max.{fmt}')))
+        self.audioplay.setIcon(QtGui.QIcon(Rpath('media',f'audio_max.{fmt}')))
         self.audioplay.setCursor(QCursor(Qt.PointingHandCursor))
         self.audioplay.clicked.connect(self.__volume)
         self.audioplay.setToolTip(self.lang.fromKey("audioacceso"))
@@ -336,13 +347,13 @@ class VideoPlayer(QWidget):
     def __volume(self):
         '''Setup volume'''
         if self.audioOutput.volume():
-            self.audioplay.setIcon(QtGui.QIcon(path('src','media',f'audio_min.{fmt}')))
+            self.audioplay.setIcon(QtGui.QIcon(Rpath('media',f'audio_min.{fmt}')))
             self.audioplay.setToolTip(self.lang.fromKey("audiospento"))
             self.audioOutput.setVolume(0)
             self.setaudio.setValue(0)
             self.new_config['volume'] = 0
         else:
-            self.audioplay.setIcon(QtGui.QIcon(path('src','media',f'audio_max.{fmt}')))
+            self.audioplay.setIcon(QtGui.QIcon(Rpath('media',f'audio_max.{fmt}')))
             self.audioplay.setToolTip(self.lang.fromKey("audioacceso"))
             if self.audio_placeholder:
                 self.audioOutput.setVolume(apn(self.audio_placeholder))
@@ -361,10 +372,10 @@ class VideoPlayer(QWidget):
         self.audioOutput.setVolume(apn(self.audio_placeholder))
         self.new_config['volume'] = self.audio_placeholder
         if self.audio_placeholder:
-            self.audioplay.setIcon(QtGui.QIcon(path('src','media',f'audio_max.{fmt}')))
+            self.audioplay.setIcon(QtGui.QIcon(Rpath('media',f'audio_max.{fmt}')))
             self.audioplay.setToolTip(self.lang.fromKey("audioacceso"))
         else:
-            self.audioplay.setIcon(QtGui.QIcon(path('src','media',f'audio_min.{fmt}')))
+            self.audioplay.setIcon(QtGui.QIcon(Rpath('media',f'audio_min.{fmt}')))
             self.audioplay.setToolTip(self.lang.fromKey("audiospento"))
     
     def __media_status_changed(self,v):

@@ -10,24 +10,22 @@ Copyright (C) 2024 Marco Catillo
 Distribuited under GPLv3 license
 https://www.gnu.org/licenses/gpl-3.0.html
 
-Description:
-    Class with the main window of the application
+Class with the main window of the application
 
 '''
 
 from PySide6.QtWidgets import *
 from PySide6.QtGui import *
 from PySide6.QtCore import *
-from PySide6 import QtGui, QtCore
+from PySide6 import QtGui
 import sys
 import os
 import json
 import datetime
-from src.videoplayer import VideoPlayer, MediaPlayer
+from src.videoplayer import VideoPlayer
 from src.header import Header
 from src.language import SelectLanguage
-import pprint as p
-from src.utils import path
+from src.utils import RWpath, Rpath
 
 #fmt = 'svg' if sys.platform=="linux" or sys.platform=="linux2" else "png"
 fmt = "png"
@@ -72,22 +70,27 @@ class MainWindow(QMainWindow):
         self.setStyleSheet("* {font-size: 14px; }")
 
         self.layout.addWidget(self.video_widget)
-        self.setWindowIcon(QtGui.QIcon(path('logo',f'logo_dot.{fmt}')))
+        self.setWindowIcon(QtGui.QIcon(Rpath('logo',f'catplayer_128x128.{fmt}')))
 
-        w = QWidget()
-        w.setLayout(self.layout)
-        self.setCentralWidget(w)
+        # Set margins around the app to zero
+        self.layout.setSpacing(0)
+        self.layout.setContentsMargins(0,0,0,0)
+
+        # Define the whole as a widget to put centrally
+        self.mw = QWidget()
+        self.mw.setLayout(self.layout)
+        self.setCentralWidget(self.mw)
 
     def __toogleFullScreen(self):
         '''Function for expand or reduce app view'''
         if self.isFullScreen():
             self.showNormal()
-            self.video_widget.screen_regulator.setIcon(QtGui.QIcon(path('src','media',f'full_screen.{fmt}')))
+            self.video_widget.screen_regulator.setIcon(QtGui.QIcon(Rpath('media',f'full_screen.{fmt}')))
             self.menuBar.show()
             self.header.show()
         else:
             self.showFullScreen()
-            self.video_widget.screen_regulator.setIcon(QtGui.QIcon(path('src','media',f'normal_screen.{fmt}')))
+            self.video_widget.screen_regulator.setIcon(QtGui.QIcon(Rpath('media',f'normal_screen.{fmt}')))
             self.video_widget.screen_regulator.setToolTip(self.lang.fromKey("reduce"))
             self.menuBar.hide()
             self.header.hide()
@@ -144,7 +147,7 @@ class MainWindow(QMainWindow):
                 self.arg = filename[0]
                 self.header.setHeaderTitle(self.arg)
                 self.video_widget.arg = self.arg
-                self.video_widget.mediaPlayer.MysetSource(path(self.arg))
+                self.video_widget.mediaPlayer.MysetSource(self.arg)
                 self.new_config['folder'] = os.path.dirname(filename[0])
                 self.new_config['num_videos_opened'] += 1
             else:
@@ -183,7 +186,7 @@ class MainWindow(QMainWindow):
         self.new_config['os'] = sys.platform
         self.new_config['open_date'] = datetime.datetime.today().ctime()
         self.new_config['close_date'] = 0
-        self.new_config['num_videos_opened'] = 0
+        self.new_config['num_videos_opened'] = 1 if self.arg else 0
         if type(self.new_config['folder']) == str:
             if self.new_config['folder'] != "":
                 self.new_config['folder'] = 0 if self.new_config['folder'][0] != '/' else self.new_config['folder']
@@ -193,7 +196,7 @@ class MainWindow(QMainWindow):
     def closeEvent(self,event):
         '''Override the close event, saving the new configuration settings in a json file'''
         self.new_config['close_date'] = datetime.datetime.today().ctime()
-        with open(path('src','config','latest_config.json'),'w', encoding ='utf8') as f:
+        with open(Rpath('config','latest_config.json'),'w', encoding ='utf8') as f:
             json.dump(self.new_config,f, ensure_ascii = False)
 
 

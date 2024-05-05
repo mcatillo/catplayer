@@ -10,18 +10,17 @@ Copyright (C) 2024 Marco Catillo
 Distribuited under GPLv3 license
 https://www.gnu.org/licenses/gpl-3.0.html
 
-Description:
-    In this python file we have two classes:
-        Language -> for handling words to be translated with different languages
-        SelectLanguage -> window for selecting a given language
+In this python file we have two classes:
+    Language -> for handling words to be translated with different languages
+    SelectLanguage -> window for selecting a given language
 
 '''
 
 from PySide6.QtWidgets import *
 from PySide6.QtGui import *
-from PySide6 import QtGui, QtCore
+from PySide6 import QtCore
 import json
-from src.utils import path
+from src.utils import Rpath
 
 class Language:
     '''This class handles words to be translated with different languages
@@ -91,7 +90,7 @@ class Language:
 
     def __take_language(self):
         '''Read the word vocabulary and put it in self.data'''
-        with open(path('src','config','vocabulary.json'),"r") as f:
+        with open(Rpath('config','vocabulary.json'),"r") as f:
             self.data = json.load(f)
         self.list_languages = list(self.data[list(self.data)[0]].keys())
 

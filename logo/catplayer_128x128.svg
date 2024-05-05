@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" version="1.1" width="128" height="128">
+
+    <circle
+        cx="64"
+        cy="64"
+        r="45.625"
+        style="fill:red;
+        stroke:black;
+        stroke-width:20.25"
+        />
+    <path
+        d = "
+        M 52 76
+        L 52 52
+        Q 52 48 60 52
+        L 80 61
+        Q 84 64 80 67
+        L 60 76
+        Q 52 80 52 76
+        "
+        style="
+        fill: white;
+        stroke:black;
+        stroke-width:4"
+    />
+</svg>
