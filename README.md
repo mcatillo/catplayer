@@ -20,7 +20,7 @@ Open PowerShell and run the commands:
         git clone https://github.com/mcatillo/catplayer.git
         cd catplayer/
         python3.10 -m venv .menv
-        .\.menv\Script\Activate.ps1
+        .\.menv\Scripts\Activate.ps1
         pip install -r requirements_win.txt
 
 
