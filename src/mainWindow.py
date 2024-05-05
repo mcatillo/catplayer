@@ -196,7 +196,7 @@ class MainWindow(QMainWindow):
     def closeEvent(self,event):
         '''Override the close event, saving the new configuration settings in a json file'''
         self.new_config['close_date'] = datetime.datetime.today().ctime()
-        with open(Rpath('config','latest_config.json'),'w', encoding ='utf8') as f:
+        with open(RWpath('config','latest_config.json'),'w', encoding ='utf8') as f:
             json.dump(self.new_config,f, ensure_ascii = False)
 
 

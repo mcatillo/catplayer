@@ -1,4 +1,5 @@
 .menv/
+.catplayerenv/
 catplayer-x86_64.AppImage/
 build/
 dist/

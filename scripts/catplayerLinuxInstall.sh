@@ -6,10 +6,12 @@ echo " Installation of catplayer for linux users."
 echo "*****************************************"
 echo ""
 
+CATPLAYER_USER=$(who am i | awk '{print $1}')
 PYTHONV=$(python3 -V)
 PYTHONN=${PYTHONV:7:4}
 CATPLAYER_EXE=/usr/bin/catplayer
 CATPLAYER_PATH=/usr/share/catplayer
+CATPLAYER_CONFIG=/home/$CATPLAYER_USER/.config/catplayer
 CATPLAYER_DESKTOP=/usr/share/applications
 CATPLAYER_ICON=/usr/share/pixmaps
 
@@ -25,9 +27,8 @@ then
     echo "*****************************************"
     echo ""
     mkdir $CATPLAYER_PATH
-    mkdir $CATPLAYER_PATH/config
-    chmod -R 777 $CATPLAYER_PATH
-    chmod -R 777 $CATPLAYER_PATH/config
+    sudo -u $CATPLAYER_USER mkdir $CATPLAYER_CONFIG
+    sudo -u $CATPLAYER_USER mkdir $CATPLAYER_CONFIG/config
     echo ""
     echo "*****************************************"
     echo " Copying files..."
@@ -36,10 +37,9 @@ then
     cp -r ./logo $CATPLAYER_PATH/
     cp ./logo/catplayer_128x128.png $CATPLAYER_ICON/
     cp -r ./media $CATPLAYER_PATH/
-    cp config/latest_config.json $CATPLAYER_PATH/config/
-    cp config/vocabulary.json $CATPLAYER_PATH/config/
     cp catplayer.desktop $CATPLAYER_DESKTOP/
-    chmod -R 777 $CATPLAYER_PATH
+    sudo -u $CATPLAYER_USER cp config/latest_config.json $CATPLAYER_CONFIG/config
+    sudo -u $CATPLAYER_USER cp config/vocabulary.json $CATPLAYER_CONFIG/config
 
     echo ""
     echo "*****************************************"
@@ -60,6 +60,8 @@ then
     unset CATPLAYER_PATH
     unset CATPLAYER_DESKTOP
     unset CATPLAYER_ICON
+    unset CATPLAYER_USER
+    unset CATPLAYER_CONFIG
     rm -r .menv
     rm -r build
     rm catplayer.spec

@@ -78,10 +78,10 @@ For creating the executable you can run:
 
 For opening a given file you can run instead:
 
-    python cli.py -i <name video>.<format>
+    python cli.py -i "<name video>.<format>"
 or
 
-    ./catplayer -i <name video>.<format>
+    ./catplayer -i "<name video>.<format>"
 
 where `<format>` can be `mp4, mov, mp3, wav, mkv, avi, ...` depending by the formats supported by your system.
 

@@ -19,7 +19,7 @@ from PySide6.QtWidgets import *
 from src.mainWindow import MainWindow
 import json
 from src.language import Language
-from src.utils import Rpath
+from src.utils import RWpath
 
 
 def get_past_settings():
@@ -28,7 +28,7 @@ def get_past_settings():
     Returns: 
         dict: dictionary of previous settings.
     '''
-    with open(Rpath('config','latest_config.json'),'r') as f:
+    with open(RWpath('config','latest_config.json'),'r') as f:
         latest_config = json.load(f)
     return latest_config
 

@@ -38,7 +38,7 @@ def Rpath(*arg):
     if sys.platform=="linux" or sys.platform=="linux2":
         local = lpath(*arg)
         gp = os.path.join('/','usr','share','catplayer',*arg)
-        if os.path.exists(local):
+        if os.path.exists(local) and os.access(local,os.R_OK):
             return local
         elif os.path.exists(gp) and os.access(gp,os.R_OK):
             return gp
@@ -46,11 +46,14 @@ def Rpath(*arg):
             raise Exception(f"Path {gp} not found or not readable")
 
     elif sys.platform=='win32':
-        gp = "C:\\Program Files (x86)\\mcatillo\\catplayer"
-        if os.path.exists(gp) and os.access(gp,os.R_OK):
-            return lpath(gp,*arg)
-        else:
+        local = lpath(*arg)
+        r = os.path.join(os.environ['PROGRAMFILES(X86)'],'mcatillo','catplayer',*arg)
+        if os.path.exists(local) and os.access(local,os.R_OK):
             return lpath(*arg)
+        elif os.path.exists(r) and os.access(r,os.R_OK):
+            return lpath(r,*arg)
+        else:
+            raise Exception(f"Path {lp} not found or not readable")
     else:
         return lpath(*arg)
 
@@ -66,8 +69,8 @@ def RWpath(*arg):
     homepath = os.path.expanduser('~')
     if sys.platform=="linux" or sys.platform=="linux2":
         local = lpath(*arg)
-        lp = os.path.join(homepath,'.local','share','catplayer',*arg)
-        if os.path.exists(local):
+        lp = os.path.join(homepath,'.config','catplayer',*arg)
+        if os.path.exists(local) and os.access(local,os.R_OK) and os.access(local,os.W_OK):
             return local
         elif os.path.exists(lp) and os.access(lp,os.R_OK) and os.access(lp,os.W_OK):
             return lp
@@ -75,11 +78,14 @@ def RWpath(*arg):
             raise Exception(f"Path {lp} not found or not readable or not writable")
 
     elif sys.platform=='win32':
-        gp = "C:\\Program Files (x86)\\mcatillo\\catplayer"
-        if os.path.exists(gp) and os.access(gp,os.R_OK):
-            return lpath(gp,*arg)
-        else:
+        local = lpath(*arg)
+        w = os.path.join(os.environ['LOCALAPPDATA'],'mcatillo','catplayer',*arg)
+        if os.path.exists(local) and os.access(local,os.R_OK) and os.access(local,os.W_OK):
             return lpath(*arg)
+        elif os.path.exists(w) and os.access(w,os.R_OK) and os.access(w,os.W_OK):
+            return lpath(w,*arg)
+        else:
+            raise Exception(f"Path {lp} not found or not readable or not writable")
     else:
         return lpath(*arg)
 
@@ -107,9 +113,9 @@ def path(*arg):
             return rp
 
     elif sys.platform=='win32':
-        gp = "C:\\Program Files (x86)\\mcatillo\\catplayer"
-        if os.path.exists(gp) and os.access(gp,os.R_OK):
-            return lpath(gp,*arg)
+        r = os.path.join(os.environ['PROGRAMFILES(X86)'],'mcatillo','catplayer',*arg)
+        if os.path.exists(r) and os.access(r,os.R_OK):
+            return lpath(r,*arg)
         else:
             return lpath(*arg)
     else:
