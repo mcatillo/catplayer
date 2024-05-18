@@ -20,7 +20,6 @@ from PySide6.QtWidgets import *
 from PySide6.QtGui import *
 from PySide6 import QtCore
 import json
-from src.utils import RWpath
 
 class Language:
     '''This class handles words to be translated with different languages
@@ -28,7 +27,7 @@ class Language:
     Attributes:
         config (dict): dictionary containing the current configuration
     '''
-    def __init__(self,config):
+    def __init__(self,config,path):
         '''Class initialization
 
         Parameters:
@@ -36,6 +35,7 @@ class Language:
         '''
         self.selected = 'en'
         self.config = config
+        self.path = path
         self.__take_language()
         self.select()
 
@@ -90,7 +90,9 @@ class Language:
 
     def __take_language(self):
         '''Read the word vocabulary and put it in self.data'''
-        with open(RWpath('config','vocabulary.json'),"r") as f:
+
+        vocabulary_file = self.path.expand("r_files","data","vocabulary.json")
+        with open(vocabulary_file,"r") as f:
             self.data = json.load(f)
         self.list_languages = list(self.data[list(self.data)[0]].keys())
 

@@ -19,18 +19,10 @@ from PySide6.QtWidgets import *
 from src.mainWindow import MainWindow
 import json
 from src.language import Language
-from src.utils import RWpath
-
-
-def get_past_settings():
-    ''' Get the past settings saved on the previous application usage
-
-    Returns: 
-        dict: dictionary of previous settings.
-    '''
-    with open(RWpath('config','latest_config.json'),'r') as f:
-        latest_config = json.load(f)
-    return latest_config
+from src.os_folder_system import Path
+from src.mvars import *
+from src.utils import get_past_settings
+from src.setup import *
 
 def main(arg):
     '''Define the main window of the application
@@ -38,13 +30,15 @@ def main(arg):
     Args:
         arg (str): file video or music to open
     '''
-    
-    app = QApplication()
-    config = get_past_settings() # get previous configurations
-    language = Language(config)
 
-    window = MainWindow(arg,config,language)
-    window.resize(854,540)
+    path = Path(INSTALLATION_TYPE,APP_OWNER,APP_NAME)
+    config = get_past_settings(path) # get previous configurations
+    language = Language(config,path)
+
+    app = QApplication()
+
+    window = MainWindow(arg,config,language,path)
+    window.resize(WIN_SIZE[0],WIN_SIZE[1])
     window.show()
     app.exec()
 

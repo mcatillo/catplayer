@@ -23,7 +23,6 @@ from PySide6.QtCore import *
 from PySide6.QtMultimedia import QMediaPlayer, QAudioOutput, QAudio
 from PySide6.QtMultimediaWidgets import QVideoWidget
 import sys
-from src.utils import Rpath
 
 fmt = 'svg' if sys.platform=="linux" or sys.platform=="linux2" else "png"
 dim = 28
@@ -184,7 +183,7 @@ class VideoPlayer(QWidget):
             containing the dictionary
     
     '''
-    def __init__(self,arg,config,language):
+    def __init__(self,arg,config,language,path):
         '''Class initialization
         
         Parameters:
@@ -197,6 +196,7 @@ class VideoPlayer(QWidget):
         self.arg = arg
         self.new_config = config
         self.lang = language
+        self.path = path
         
         # Main layout
         self.lvideo = QVBoxLayout()
@@ -286,21 +286,21 @@ class VideoPlayer(QWidget):
         # self.screen_regulator button
         self.screen_regulator.setFixedHeight(dim)
         self.screen_regulator.setFixedWidth(dim)
-        self.screen_regulator.setIcon(QtGui.QIcon(Rpath('media',f'full_screen.{fmt}')))
+        self.screen_regulator.setIcon(QtGui.QIcon(self.path.expand('r_files','data','media',f'full_screen.{fmt}')))
         self.screen_regulator.setCursor(QCursor(Qt.PointingHandCursor))
         self.screen_regulator.setToolTip(self.lang.fromKey("expand"))
 
         # self.exit_button button
         self.exit_button.setFixedHeight(dim)
         self.exit_button.setFixedWidth(dim)
-        self.exit_button.setIcon(QtGui.QIcon(Rpath('media',f'exit.{fmt}')))
+        self.exit_button.setIcon(QtGui.QIcon(self.path.expand('r_files','data','media',f'exit.{fmt}')))
         self.exit_button.setCursor(QCursor(Qt.PointingHandCursor))
         self.exit_button.setToolTip(self.lang.fromKey("exit"))
 
         # self.audioplay button for audio on/off
         self.audioplay.setFixedHeight(dim)
         self.audioplay.setFixedWidth(dim)
-        self.audioplay.setIcon(QtGui.QIcon(Rpath('media',f'audio_max.{fmt}')))
+        self.audioplay.setIcon(QtGui.QIcon(self.path.expand('r_files','data','media',f'audio_max.{fmt}')))
         self.audioplay.setCursor(QCursor(Qt.PointingHandCursor))
         self.audioplay.clicked.connect(self.__volume)
         self.audioplay.setToolTip(self.lang.fromKey("audioacceso"))
@@ -347,13 +347,13 @@ class VideoPlayer(QWidget):
     def __volume(self):
         '''Setup volume'''
         if self.audioOutput.volume():
-            self.audioplay.setIcon(QtGui.QIcon(Rpath('media',f'audio_min.{fmt}')))
+            self.audioplay.setIcon(QtGui.QIcon(self.path.expand('r_files','data','media',f'audio_min.{fmt}')))
             self.audioplay.setToolTip(self.lang.fromKey("audiospento"))
             self.audioOutput.setVolume(0)
             self.setaudio.setValue(0)
             self.new_config['volume'] = 0
         else:
-            self.audioplay.setIcon(QtGui.QIcon(Rpath('media',f'audio_max.{fmt}')))
+            self.audioplay.setIcon(QtGui.QIcon(self.path.expand('r_files','data','media',f'audio_max.{fmt}')))
             self.audioplay.setToolTip(self.lang.fromKey("audioacceso"))
             if self.audio_placeholder:
                 self.audioOutput.setVolume(apn(self.audio_placeholder))
@@ -372,10 +372,10 @@ class VideoPlayer(QWidget):
         self.audioOutput.setVolume(apn(self.audio_placeholder))
         self.new_config['volume'] = self.audio_placeholder
         if self.audio_placeholder:
-            self.audioplay.setIcon(QtGui.QIcon(Rpath('media',f'audio_max.{fmt}')))
+            self.audioplay.setIcon(QtGui.QIcon(self.path.expand('r_files','data','media',f'audio_max.{fmt}')))
             self.audioplay.setToolTip(self.lang.fromKey("audioacceso"))
         else:
-            self.audioplay.setIcon(QtGui.QIcon(Rpath('media',f'audio_min.{fmt}')))
+            self.audioplay.setIcon(QtGui.QIcon(self.path.expand('r_files','data','media',f'audio_min.{fmt}')))
             self.audioplay.setToolTip(self.lang.fromKey("audiospento"))
     
     def __media_status_changed(self,v):

@@ -26,9 +26,9 @@ import sys
 
 parser = argparse.ArgumentParser(description='Basic video/music player app.',prog='catplayer')
 parser.add_argument('filename',default="",nargs='?',help='Video/Music input file')
-parser.add_argument('-i','--input',default=None,type=str,help='Video/Music input file')
+
 
 if __name__ == "__main__":
     arg = parser.parse_args() # file video/music to open
-    inputfile = arg.filename if arg.filename else arg.input
-    main(inputfile)
+    #inputfile = arg.filename if arg.filename else arg.input
+    main(arg.filename)

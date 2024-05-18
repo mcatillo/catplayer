@@ -25,7 +25,7 @@ import datetime
 from src.videoplayer import VideoPlayer
 from src.header import Header
 from src.language import SelectLanguage
-from src.utils import RWpath, Rpath
+from src.mvars import *
 
 #fmt = 'svg' if sys.platform=="linux" or sys.platform=="linux2" else "png"
 fmt = "png"
@@ -41,7 +41,7 @@ class MainWindow(QMainWindow):
             containing the dictionary
     
     '''
-    def __init__(self,arg,config,language):
+    def __init__(self,arg,config,language,path):
         '''Class initialization
         
         Parameters:
@@ -55,11 +55,12 @@ class MainWindow(QMainWindow):
         self.layout = QVBoxLayout()
         self.arg = arg
         self.lang = language
+        self.path = path
         self.old_config = config
         self.new_config()
 
         self.header = Header(self.arg,self.lang)
-        self.video_widget = VideoPlayer(self.arg,self.new_config,self.lang)
+        self.video_widget = VideoPlayer(self.arg,self.new_config,self.lang,self.path)
         self.video_widget.screen_regulator.clicked.connect(self.__toogleFullScreen)
         self.video_widget.exit_button.clicked.connect(self.close)
 
@@ -67,10 +68,12 @@ class MainWindow(QMainWindow):
         self._createActions()
         self._createMenuBar()
         self._conenctAction()
-        self.setStyleSheet("* {font-size: 14px; }")
+        font = QFont()
+        font.setPointSize(FONT_SIZE)
+        self.setFont(font)
 
         self.layout.addWidget(self.video_widget)
-        self.setWindowIcon(QtGui.QIcon(Rpath('logo',f'catplayer_128x128.{fmt}')))
+        self.setWindowIcon(QtGui.QIcon(self.path.expand("logo",'data','logo','catplayer_128x128.ico')))
 
         # Set margins around the app to zero
         self.layout.setSpacing(0)
@@ -85,12 +88,12 @@ class MainWindow(QMainWindow):
         '''Function for expand or reduce app view'''
         if self.isFullScreen():
             self.showNormal()
-            self.video_widget.screen_regulator.setIcon(QtGui.QIcon(Rpath('media',f'full_screen.{fmt}')))
+            self.video_widget.screen_regulator.setIcon(self.path.expand("r_files",'data','media',f'full_screen.{fmt}'))
             self.menuBar.show()
             self.header.show()
         else:
             self.showFullScreen()
-            self.video_widget.screen_regulator.setIcon(QtGui.QIcon(Rpath('media',f'normal_screen.{fmt}')))
+            self.video_widget.screen_regulator.setIcon(QtGui.QIcon(self.path.expand("r_files",'data','media',f'normal_screen.{fmt}')))
             self.video_widget.screen_regulator.setToolTip(self.lang.fromKey("reduce"))
             self.menuBar.hide()
             self.header.hide()
@@ -196,7 +199,7 @@ class MainWindow(QMainWindow):
     def closeEvent(self,event):
         '''Override the close event, saving the new configuration settings in a json file'''
         self.new_config['close_date'] = datetime.datetime.today().ctime()
-        with open(RWpath('config','latest_config.json'),'w', encoding ='utf8') as f:
+        with open(self.path.expand('rw_files','config','config.json'),'w', encoding ='utf8') as f:
             json.dump(self.new_config,f, ensure_ascii = False)
 
 
