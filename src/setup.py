@@ -3,4 +3,4 @@
 
 APP_NAME="catplayer"
 APP_OWNER="mcatillo"
-INSTALLATION_TYPE="global"
+INSTALLATION_TYPE="local_dir"
