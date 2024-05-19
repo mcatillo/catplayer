@@ -23,6 +23,7 @@ from src.os_folder_system import Path
 from src.mvars import *
 from src.utils import get_past_settings
 from src.setup import *
+import sys
 
 def main(arg):
     '''Define the main window of the application
@@ -34,10 +35,10 @@ def main(arg):
     path = Path(INSTALLATION_TYPE,APP_OWNER,APP_NAME)
     config = get_past_settings(path) # get previous configurations
     language = Language(config,path)
+    print(arg.list)
+    app = QApplication(arg.list) 
 
-    app = QApplication()
-
-    window = MainWindow(arg,config,language,path)
+    window = MainWindow(arg.parser.filename,config,language,path)
     window.resize(WIN_SIZE[0],WIN_SIZE[1])
     window.show()
     app.exec()

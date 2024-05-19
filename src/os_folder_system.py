@@ -88,20 +88,16 @@ class Path:
             if self.installation_type == "global" or self.installation_type == "local_folder":
 
                 self.config_folder = os.path.join(self.home,".config",self.prog_dir,"config")
-                self.tmp_folder = os.path.join(self.home,".config",self.prog_dir,"tmp")
                 self.prog_folder = os.path.join(self.home,".config",self.prog_dir)
 
                 if not os.path.exists(self.prog_folder):
                     os.mkdir(self.prog_folder)
-                if not os.path.exists(self.tmp_folder):
-                    os.mkdir(self.tmp_folder)
                 if not os.path.exists(self.config_folder):
                     os.mkdir(self.config_folder)
         elif self.os == "win32":
             if self.installation_type == "global" or self.installation_type == "local_folder":
 
                 self.config_folder = p(os.environ['LOCALAPPDATA'],self.prog_owner,self.prog_dir,"config")
-                self.tmp_folder = p(os.environ['LOCALAPPDATA'],self.prog_owner,self.prog_dir,"tmp")
                 self.prog_folder = p(os.environ['LOCALAPPDATA'],self.prog_owner,self.prog_dir)
                 self.prog_owner = p(os.environ['LOCALAPPDATA'],self.prog_owner)
 
@@ -109,8 +105,6 @@ class Path:
                     os.mkdir(self.prog_owner)
                 if not os.path.exists(self.prog_folder):
                     os.mkdir(self.prog_folder)
-                if not os.path.exists(self.tmp_folder):
-                    os.mkdir(self.tmp_folder)
                 if not os.path.exists(self.config_folder):
                     os.mkdir(self.config_folder)
         else:
