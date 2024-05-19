@@ -88,7 +88,7 @@ class MainWindow(QMainWindow):
         '''Function for expand or reduce app view'''
         if self.isFullScreen():
             self.showNormal()
-            self.video_widget.screen_regulator.setIcon(self.path.expand("r_files",'data','media',f'full_screen.{fmt}'))
+            self.video_widget.screen_regulator.setIcon(QtGui.QIcon(self.path.expand("r_files",'data','media',f'full_screen.{fmt}')))
             self.menuBar.show()
             self.header.show()
         else:
